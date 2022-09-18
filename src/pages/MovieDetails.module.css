@@ -1,0 +1,27 @@
+.mainSection {
+  display: flex;
+  width: 90vw;
+  margin: 20px;
+}
+
+.secSection {
+  margin-left: 15px;
+}
+
+.movieTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.movieOverview {
+  composes: movieTitle;
+}
+
+.movieGenre {
+  composes: movieTitle;
+}
+
+.addInfo {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
