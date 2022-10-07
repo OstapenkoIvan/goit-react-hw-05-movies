@@ -6,8 +6,6 @@ function CastItem({ props }) {
   const { profile_path, original_name, name, character } = props;
   const posterAddress = `https://image.tmdb.org/t/p/original/${profile_path}`;
 
-  console.log(props);
-
   return (
     <>
       <div>
