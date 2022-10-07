@@ -43,7 +43,7 @@ export const MovieProvider = ({ children }) => {
     let parsedData = null;
     try {
       const fetchDAta = await fetch(
-        `${ADDRESS}${search}/movie/${id}${data}?api_key=${KEY}${query}${name}`
+        `${ADDRESS}${search}/movie${id}${data}?api_key=${KEY}${query}${name}`
       );
       parsedData = await fetchDAta.json();
       return parsedData;
@@ -66,17 +66,20 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
-  const getMovieById = useCallback(id => {
+  const getMovieById = useCallback(val => {
+    const id = `/${val}`;
     return fetchMovieData({ id });
   }, []);
 
-  const getMovieCast = useCallback(id => {
+  const getMovieCast = useCallback(val => {
     const { credits } = URL;
+    const id = `/${val}`;
     return fetchMovieData({ id, data: credits });
   }, []);
 
-  const getMovieReviews = useCallback(id => {
+  const getMovieReviews = useCallback(val => {
     const { reviews } = URL;
+    const id = `/${val}`;
     return fetchMovieData({ id, data: reviews });
   }, []);
 
