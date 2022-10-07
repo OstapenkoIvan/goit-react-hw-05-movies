@@ -17,7 +17,7 @@ export const MovieProvider = ({ children }) => {
   const [searchList, setSearchList] = useState([]);
   const [searchValue, setSearchValue] = useState({});
 
-  const getTrendingMovies = async () => {
+  const getTrendingMovies = useCallback(async () => {
     const { ADDRESS, KEY } = URL;
     try {
       const fetchDAta = await fetch(
@@ -30,7 +30,7 @@ export const MovieProvider = ({ children }) => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, []);
 
   const fetchMovieData = async ({
     id = '',
@@ -66,13 +66,14 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
-  const getMovieById = id => {
+  const getMovieById = useCallback(id => {
     return fetchMovieData({ id });
-  };
-  const getMovieCast = id => {
+  }, []);
+
+  const getMovieCast = useCallback(id => {
     const { credits } = URL;
     return fetchMovieData({ id, data: credits });
-  };
+  }, []);
 
   const getMovieReviews = useCallback(id => {
     const { reviews } = URL;
@@ -87,15 +88,6 @@ export const MovieProvider = ({ children }) => {
       search: search,
     });
   }, []);
-
-  // const getMovieByName = name => {
-  //   const { query, search } = URL;
-  //   return fetchMovieData({
-  //     query: query,
-  //     name,
-  //     search: search,
-  //   });
-  // };
 
   return (
     <MovieContext.Provider

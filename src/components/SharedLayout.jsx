@@ -3,10 +3,17 @@ import { NavLink, Outlet } from 'react-router-dom';
 import s from './SharedLayout.module.css';
 import { useMovie } from '../components/useContext';
 
+/**
+ * * "movies" OnClick resets previous search results.
+ * * line 4,8,9,18(onCLick).
+ * * If removed - search results will be saved.
+ */
+
 function SharedLayout() {
-  // "movies" OnClick resets previous search results. line 4,8,9,18(onCLick). If removed - search results will be saved.
   const { setSearchList } = useMovie();
   const resetArr = () => setSearchList([]);
+
+  console.count('render-SL');
 
   return (
     <>

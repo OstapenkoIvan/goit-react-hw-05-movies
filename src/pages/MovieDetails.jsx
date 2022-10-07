@@ -8,12 +8,7 @@ import { useMovie } from '../components/useContext';
 
 /**
  * TODO how do i stop rendering main section while pressing cast/reviews?
- * ! 429 error when 'cast' is opened
  * ! When you click different movies, you can briefly see prev poster
-//  * TODO make external state component
-//  * ? Is reducer necessary? How to change it to useState
-//  * TODO make common container components
-//  * ! after opening cast or reviews 'go back button' sends to "home", not search results
  */
 
 function MovieDetails({ state }) {
@@ -25,7 +20,7 @@ function MovieDetails({ state }) {
 
   useEffect(() => {
     getMovieById(movieId);
-  }, [movieId]); //if you add dependancy "getTrendingMovies" it keeps fetching. why?;
+  }, [getMovieById, movieId]);
 
   if (!Object.keys(searchValue).length) {
     return;
@@ -41,16 +36,18 @@ function MovieDetails({ state }) {
     poster_path,
   } = searchValue;
 
-  const movieAdress = `https://image.tmdb.org/t/p/original${poster_path}`;
+  const movieAddress = `https://image.tmdb.org/t/p/original${poster_path}`;
   const movieScore = Math.round(vote_average * 10) + '%';
   const movieDate = new Date(release_date);
   const movieGenres = genres?.map(gen => gen.name).join(' ');
+
+  console.count('render-md');
 
   return (
     <Container>
       <BackLink to={backLinkHref}>Go Back</BackLink>
       <section className={s.mainSection}>
-        <img src={movieAdress} alt="" width={200} />
+        <img src={movieAddress} alt="" width={200} />
         <div className={s.secSection}>
           <p className={s.movieTitle}>
             {title || name}({movieDate.getFullYear()})
@@ -134,7 +131,7 @@ export default MovieDetails;
 //     poster_path,
 //   } = movie;
 
-//   const movieAdress = `https://image.tmdb.org/t/p/original${poster_path}`;
+//   const movieAddress = `https://image.tmdb.org/t/p/original${poster_path}`;
 //   const movieScore = Math.round(vote_average * 10) + '%';
 //   const movieDate = new Date(release_date);
 //   const movieGenres = genres?.map(gen => gen.name).join(' ');
@@ -143,7 +140,7 @@ export default MovieDetails;
 //     <Container>
 //       <BackLink to={backLinkHref}>Go Back</BackLink>
 //       <section className={s.mainSection}>
-//         <img src={movieAdress} alt="" width={200} />
+//         <img src={movieAddress} alt="" width={200} />
 //         <div className={s.secSection}>
 //           <p className={s.movieTitle}>
 //             {title || name}({movieDate.getFullYear()})

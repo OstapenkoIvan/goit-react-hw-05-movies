@@ -9,10 +9,6 @@ const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
 
-/**
- * TODO make shared state.
- */
-
 export const App = () => {
   return (
     <>

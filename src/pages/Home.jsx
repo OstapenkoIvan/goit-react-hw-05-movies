@@ -5,20 +5,18 @@ import Container from '../components/Container';
 import s from './Home.module.css';
 import { useMovie } from '../components/useContext';
 
-/**
- * TODO How to optimized fetching here? trending results in one session are the same. useRef for search results maybe?
- */
-
 function Home() {
   const { trend, getTrendingMovies } = useMovie();
 
   useEffect(() => {
     getTrendingMovies();
-  }, []); //if you add dependency "getTrendingMovies" it keeps fetching. why?; useCallback?
+  }, [getTrendingMovies]);
 
   if (!trend.length) {
     return;
   }
+
+  console.count('render-home'); // 2 рендера на старте, при возврате на домашнюю страницу 5-6 рендеров. Почему?
 
   return (
     <Container>

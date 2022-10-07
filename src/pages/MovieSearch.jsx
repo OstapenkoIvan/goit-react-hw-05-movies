@@ -5,10 +5,6 @@ import MovieList from '../components/MovieList';
 import Container from '../components/Container';
 import { useMovie } from '../components/useContext';
 
-/**
- * TODO every click in search bar rerenders page. Why?
- */
-
 function Movies(props) {
   const { searchList, getMovieByName } = useMovie();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,7 +25,7 @@ function Movies(props) {
     getMovieByName(searchQuery);
   };
 
-  console.count('rerender');
+  console.count('render-ms');
 
   return (
     <Container>
