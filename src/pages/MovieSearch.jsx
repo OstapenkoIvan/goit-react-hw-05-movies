@@ -14,6 +14,7 @@ function Movies(props) {
     if (searchQuery) {
       getMovieByName(searchQuery);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMovieByName]); // Если добавить searchQuery, то поиск будет происходить по каждой введенной букве в поиск
 
   const onChange = value => {
