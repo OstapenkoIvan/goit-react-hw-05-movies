@@ -6,7 +6,7 @@ import './index.css';
 
 import { MovieProvider } from './components/useContext.jsx';
 
-const address = window.location.pathname + '/OstapenkoIvan';
+const address = window.location.pathname + 'OstapenkoIvan';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
