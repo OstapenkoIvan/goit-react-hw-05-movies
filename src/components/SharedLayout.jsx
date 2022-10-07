@@ -13,8 +13,6 @@ function SharedLayout() {
   const { setSearchList } = useMovie();
   const resetArr = () => setSearchList([]);
 
-  console.count('render-SL');
-
   return (
     <>
       <header className={s.header}>
@@ -35,7 +33,3 @@ function SharedLayout() {
 }
 
 export default SharedLayout;
-
-/**
- * TODO make active button visible
- */

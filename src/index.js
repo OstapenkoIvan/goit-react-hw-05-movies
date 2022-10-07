@@ -6,12 +6,10 @@ import './index.css';
 
 import { MovieProvider } from './components/useContext.jsx';
 
-const address = window.location.pathname + 'OstapenkoIvan';
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MovieProvider>
-      <BrowserRouter basename={address}>
+      <BrowserRouter basename="/goit-react-hw-05-movies/">
         <App />
       </BrowserRouter>
     </MovieProvider>

@@ -21,12 +21,10 @@ function Movies(props) {
     setSearchParams(value !== '' ? { query: value } : {});
   };
 
-  const onSubmit = value => {
-    setSearchParams(value !== '' ? { query: value } : {});
-    getMovieByName(searchQuery);
-  };
-
-  console.count('render-ms');
+  // const onSubmit = value => {
+  //   setSearchParams(value !== '' ? { query: value } : {});
+  //   getMovieByName(searchQuery);
+  // };
 
   return (
     <Container>
@@ -34,7 +32,7 @@ function Movies(props) {
         <SearchForm
           value={searchQuery}
           onChange={onChange}
-          onSubmit={onSubmit}
+          // onSubmit={onSubmit}
         />
         {searchList.length > 0 && <MovieList data={searchList} />}
       </section>

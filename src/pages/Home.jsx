@@ -16,8 +16,6 @@ function Home() {
     return;
   }
 
-  console.count('render-home'); // 2 рендера на старте, при возврате на домашнюю страницу 5-6 рендеров. Почему?
-
   return (
     <Container>
       <h2>Trending today</h2>
