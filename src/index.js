@@ -9,7 +9,7 @@ import { MovieProvider } from './components/useContext.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MovieProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="goit-react-hw-05-movies/OstapenkoIvan">
         <App />
       </BrowserRouter>
     </MovieProvider>
