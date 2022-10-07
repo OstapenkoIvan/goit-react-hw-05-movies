@@ -43,7 +43,7 @@ export const MovieProvider = ({ children }) => {
     let parsedData = null;
     try {
       const fetchDAta = await fetch(
-        `${ADDRESS}${search}/movie${id}${data}?api_key=${KEY}${query}${name}`
+        `${ADDRESS}${search}/movie/${id}${data}?api_key=${KEY}${query}${name}`
       );
       parsedData = await fetchDAta.json();
       return parsedData;
