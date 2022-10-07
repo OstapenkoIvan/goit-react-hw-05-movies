@@ -1,40 +1,28 @@
-import React, { useEffect, useMemo, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import MoviesAPI from '../MoviesAPI';
 import s from './Reviews.module.css';
-// import PropTypes from 'prop-types';
-
-/**
- * TODO i need to useState instead of useReducer
- */
-
-function reducer(_, action) {
-  return action;
-}
+import { useMovie } from './useContext';
 
 function Reviews(props) {
-  const [state, dispatch] = useReducer(reducer, null);
+  const { searchList, getMovieReviews } = useMovie();
   const { movieId } = useParams();
-  const FetchAPI = useMemo(() => new MoviesAPI(), []);
 
   useEffect(() => {
-    FetchAPI.getMovieReviews(Number(movieId)).then(
-      data => data.total_results && dispatch(data.results)
-    );
-  }, [FetchAPI, movieId]);
+    getMovieReviews(Number(movieId));
+  }, [getMovieReviews, movieId]);
 
-  if (!state) {
-    return <p>We dont have any reviews on this movie! :(</p>;
+  if (!searchList.length) {
+    return <p>We don't have any reviews on this movie! :(</p>;
   }
 
   return (
     <section>
       <ul>
-        {state.map(review => {
+        {searchList.map(({ id, author, content }) => {
           return (
-            <li key={review.id}>
-              <p className={s.author}>{review.author}</p>
-              <p>{review.content}</p>
+            <li key={id}>
+              <p className={s.author}>{author}</p>
+              <p>{content}</p>
             </li>
           );
         })}
@@ -42,7 +30,5 @@ function Reviews(props) {
     </section>
   );
 }
-
-// Reviews.propTypes = {};
 
 export default Reviews;

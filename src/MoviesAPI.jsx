@@ -6,7 +6,7 @@ import { PureComponent } from 'react';
 
 class MoviesAPI extends PureComponent {
   state = {
-    ARDESS: 'https://api.themoviedb.org/3',
+    ADDRESS: 'https://api.themoviedb.org/3',
     KEY: '1fc64bab255082a4321d61bf4be98a08',
     credits: '/credits',
     reviews: '/reviews',
@@ -15,10 +15,10 @@ class MoviesAPI extends PureComponent {
   };
 
   getTrendingMovies = async () => {
-    const { ARDESS, KEY } = this.state;
+    const { ADDRESS, KEY } = this.state;
     try {
       const fetchDAta = await fetch(
-        `${ARDESS}/trending/movie/week?api_key=${KEY}`
+        `${ADDRESS}/trending/movie/week?api_key=${KEY}`
       );
       const parsedData = await fetchDAta.json();
       const results = await parsedData.results;
@@ -35,10 +35,10 @@ class MoviesAPI extends PureComponent {
     name = '',
     search = '',
   }) => {
-    const { ARDESS, KEY } = this.state;
+    const { ADDRESS, KEY } = this.state;
     try {
       const fetchDAta = await fetch(
-        `${ARDESS}${search}/movie/${id}${data}?api_key=${KEY}${query}${name}`
+        `${ADDRESS}${search}/movie/${id}${data}?api_key=${KEY}${query}${name}`
       );
       const parsedData = await fetchDAta.json();
       return parsedData;

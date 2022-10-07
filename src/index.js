@@ -4,10 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from 'components/App';
 import './index.css';
 
+import { MovieProvider } from './components/useContext.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <MovieProvider>
+      <BrowserRouter basename="/OstapenkoIvan">
+        <App />
+      </BrowserRouter>
+    </MovieProvider>
   </React.StrictMode>
 );

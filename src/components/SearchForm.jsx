@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 function SearchForm({ onChange, onSubmit, value }) {
   const handleChange = e => {
@@ -13,12 +13,15 @@ function SearchForm({ onChange, onSubmit, value }) {
   return (
     <form onSubmit={handleSubmit}>
       <input value={value} type="text" name="query" onChange={handleChange} />
-      {/* <input value={value} type="text" name="query" /> */}
       <button type="submit">SEARCH</button>
     </form>
   );
 }
 
-// SearchForm.propTypes = {}
+SearchForm.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default SearchForm;

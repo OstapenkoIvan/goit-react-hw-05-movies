@@ -1,8 +1,13 @@
-import React from 'react';
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import s from './SharedLayout.module.css';
+import { useMovie } from '../components/useContext';
 
 function SharedLayout() {
+  // "movies" OnClick resets previous search results. line 4,8,9,18(onCLick). If removed - search results will be saved.
+  const { setSearchList } = useMovie();
+  const resetArr = () => setSearchList([]);
+
   return (
     <>
       <header className={s.header}>
@@ -10,13 +15,14 @@ function SharedLayout() {
           <NavLink to="/" className={s.navLink}>
             <span className={s.navText}>Home</span>
           </NavLink>
-          <NavLink to="/movies" className={s.navLink}>
+          <NavLink to="/movies" className={s.navLink} onClick={resetArr}>
             <span className={s.navText}>Movies</span>
           </NavLink>
         </nav>
       </header>
-
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

@@ -1,41 +1,40 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Container from '../components/Container';
 
-import MoviesAPI from '../MoviesAPI';
 import s from './Home.module.css';
+import { useMovie } from '../components/useContext';
+
+/**
+ * TODO How to optimized fetching here? trending results in one session are the same. useRef for search results maybe?
+ */
 
 function Home() {
-  const [trends, setTrends] = useState([]);
-  /**
-   * TODO How to optimise fetching here? trending results in one session are the same. useRef for search results maybe?
-   */
-  const FetchAPI = useMemo(() => new MoviesAPI(), []);
+  const { trend, getTrendingMovies } = useMovie();
 
   useEffect(() => {
-    FetchAPI.getTrendingMovies().then(data => setTrends(data));
-  }, [FetchAPI]);
+    getTrendingMovies();
+  }, []); //if you add dependency "getTrendingMovies" it keeps fetching. why?; useCallback?
 
-  if (!trends.length) {
+  if (!trend.length) {
     return;
   }
 
   return (
-    <>
+    <Container>
       <h2>Trending today</h2>
 
       <ul className={s.list}>
-        {trends.map(trend => {
+        {trend.map(({ id, title, name }) => {
           return (
-            <Link to={`movies/${trend.id}`} key={trend.id}>
-              <li>{trend.title || trend.name}</li>
-            </Link>
+            <li key={id}>
+              <Link to={`movies/${id}`}>{title || name}</Link>
+            </li>
           );
         })}
       </ul>
-    </>
+    </Container>
   );
 }
-
-// Home.propTypes = {};
 
 export default Home;

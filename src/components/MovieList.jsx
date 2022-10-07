@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 function MovieList({ data }) {
   const location = useLocation();
@@ -9,10 +9,11 @@ function MovieList({ data }) {
   return (
     <ul>
       {data.map(trend => {
+        const { id, title, name } = trend;
         return (
-          <li key={trend.id}>
-            <Link to={`${trend.id}`} state={{ from: location }}>
-              {trend.title || trend.name}
+          <li key={id}>
+            <Link to={`${id}`} state={{ from: location }}>
+              {title || name}
             </Link>
           </li>
         );
@@ -21,6 +22,6 @@ function MovieList({ data }) {
   );
 }
 
-// MovieList.propTypes = {}
+MovieList.propTypes = { data: PropTypes.array.isRequired };
 
 export default MovieList;
