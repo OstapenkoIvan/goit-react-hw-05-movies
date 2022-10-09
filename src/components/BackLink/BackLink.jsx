@@ -4,10 +4,6 @@ import { FaArrowLeft } from 'react-icons/fa';
 import s from './BackLink.module.css';
 import PropTypes from 'prop-types';
 
-/**
- * !When you press "back" - data is re-fetched. How to Memo it?
- */
-
 function BackLink({ to, children }) {
   return (
     <Link to={to}>

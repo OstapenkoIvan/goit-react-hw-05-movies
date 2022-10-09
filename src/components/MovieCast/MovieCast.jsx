@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import s from './MovieCast.module.css';
 import { useMovie } from '../../context/useContext';
 import CastItem from '../CastItem/CastItem';
+import s from './MovieCast.module.css';
 
 function Cast(props) {
   const { searchList, getMovieCast } = useMovie();
@@ -17,11 +17,11 @@ function Cast(props) {
   }
 
   return (
-    <section className={s.castSection}>
+    <ul className={s.castSection}>
       {searchList.map(searchItem => {
-        return <CastItem key={searchItem.id} props={searchItem} />;
+        return <CastItem key={searchItem.cast_id} props={searchItem} />;
       })}
-    </section>
+    </ul>
   );
 }
 

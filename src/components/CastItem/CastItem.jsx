@@ -8,7 +8,7 @@ function CastItem({ props }) {
 
   return (
     <>
-      <div>
+      <li className={s.itemThumb}>
         {profile_path ? (
           <img
             src={posterAddress}
@@ -22,7 +22,7 @@ function CastItem({ props }) {
           <li>{name || original_name}</li>
           {character && <p>Character: {character}</p>}
         </ul>
-      </div>
+      </li>
     </>
   );
 }

@@ -1,13 +1,7 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import s from './SharedLayout.module.css';
 import { useMovie } from '../../context/useContext';
-
-/**
- * * "movies" OnClick resets previous search results.
- * * line 4,8,9,18(onCLick).
- * * If removed - search results will be saved.
- */
+import s from './SharedLayout.module.css';
 
 function SharedLayout() {
   const { setSearchList } = useMovie();

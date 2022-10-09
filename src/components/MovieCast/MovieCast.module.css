@@ -18,3 +18,7 @@
 .castSection {
   margin-top: 20px;
 }
+
+.itemThumb {
+  list-style: none;
+}

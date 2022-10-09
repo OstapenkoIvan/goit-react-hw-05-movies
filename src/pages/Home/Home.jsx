@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../../components/Container/Container';
-
-import s from './Home.module.css';
 import { useMovie } from '../../context/useContext';
+import s from './Home.module.css';
 
 function Home() {
   const { trend, getTrendingMovies } = useMovie();

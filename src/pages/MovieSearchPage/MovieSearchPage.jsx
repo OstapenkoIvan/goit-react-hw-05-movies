@@ -21,19 +21,10 @@ function Movies(props) {
     setSearchParams(value !== '' ? { query: value } : {});
   };
 
-  // const onSubmit = value => {
-  //   setSearchParams(value !== '' ? { query: value } : {});
-  //   getMovieByName(searchQuery);
-  // };
-
   return (
     <Container>
       <section>
-        <SearchForm
-          value={searchQuery}
-          onChange={onChange}
-          // onSubmit={onSubmit}
-        />
+        <SearchForm value={searchQuery} onChange={onChange} />
         {searchList.length > 0 && <MovieList data={searchList} />}
       </section>
     </Container>
