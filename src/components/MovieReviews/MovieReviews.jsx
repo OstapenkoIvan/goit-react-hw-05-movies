@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import s from './Reviews.module.css';
-import { useMovie } from './useContext';
+import s from './movieReviews.module.css';
+import { useMovie } from '../../context/useContext';
 
 function Reviews(props) {
   const { searchList, getMovieReviews } = useMovie();

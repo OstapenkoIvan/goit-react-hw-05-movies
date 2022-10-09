@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import SearchForm from '../components/SearchForm';
-import MovieList from '../components/MovieList';
-import Container from '../components/Container';
-import { useMovie } from '../components/useContext';
+import SearchForm from '../../components/SearchForm/SearchForm';
+import MovieList from '../../components/MovieList/MovieList';
+import Container from '../../components/Container/Container';
+import { useMovie } from '../../context/useContext';
 
 function Movies(props) {
   const { searchList, getMovieByName } = useMovie();

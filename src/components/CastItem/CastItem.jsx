@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './Cast.module.css';
+import s from '../MovieCast/MovieCast.module.css';
 
 function CastItem({ props }) {
   const { profile_path, original_name, name, character } = props;

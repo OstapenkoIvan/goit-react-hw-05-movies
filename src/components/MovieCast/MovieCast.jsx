@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import s from './Cast.module.css';
-import { useMovie } from './useContext';
-import CastItem from './CastItem';
+import s from './MovieCast.module.css';
+import { useMovie } from '../../context/useContext';
+import CastItem from '../CastItem/CastItem';
 
 function Cast(props) {
   const { searchList, getMovieCast } = useMovie();

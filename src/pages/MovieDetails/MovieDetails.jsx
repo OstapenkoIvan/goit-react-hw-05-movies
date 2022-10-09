@@ -1,10 +1,9 @@
 import { useEffect, Suspense } from 'react';
 import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
 import s from './MovieDetails.module.css';
-import BackLink from '../components/BackLink';
-import Container from '../components/Container';
-
-import { useMovie } from '../components/useContext';
+import BackLink from '../../components/BackLink/BackLink';
+import Container from '../../components/Container/Container';
+import { useMovie } from '../../context/useContext';
 
 function MovieDetails({ state }) {
   const { movieId } = useParams();

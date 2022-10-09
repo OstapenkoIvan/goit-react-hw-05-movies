@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import s from './SharedLayout.module.css';
-import { useMovie } from '../components/useContext';
+import { useMovie } from '../../context/useContext';
 
 /**
  * * "movies" OnClick resets previous search results.

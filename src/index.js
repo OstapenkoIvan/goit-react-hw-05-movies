@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from 'components/App';
 import './index.css';
 
-import { MovieProvider } from './components/useContext.jsx';
+import { MovieProvider } from './context/useContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
