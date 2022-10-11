@@ -1,4 +1,5 @@
 import { useContext, createContext, useState, useCallback } from 'react';
+import { movieAPI } from '../api/MoviesAPI.js';
 
 const MovieContext = createContext();
 export const useMovie = () => useContext(MovieContext);
@@ -13,84 +14,85 @@ const URL = {
 };
 
 export const MovieProvider = ({ children }) => {
+  const { trendingMovies, searchedMovies } = movieAPI;
   const [trend, setTrend] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [searchValue, setSearchValue] = useState({});
+  const { ADDRESS, KEY, query, search, reviews, credits } = URL;
 
   const getTrendingMovies = useCallback(async () => {
-    const { ADDRESS, KEY } = URL;
     try {
-      const fetchDAta = await fetch(
-        `${ADDRESS}/trending/movie/week?api_key=${KEY}`
-      );
-      const parsedData = await fetchDAta.json();
-      const results = await parsedData.results;
-      await setTrend(results);
+      const { results } = await (await trendingMovies(ADDRESS, KEY)).json();
+      setTrend(results);
       return await results;
     } catch (error) {
       console.log(error.message);
     }
-  }, []);
+  }, [ADDRESS, KEY, trendingMovies]);
 
-  const fetchMovieData = async ({
-    id = '',
-    data = '',
-    query = '',
-    name = '',
-    search = '',
-  }) => {
-    const { ADDRESS, KEY } = URL;
-    let parsedData = null;
-    try {
-      const fetchDAta = await fetch(
-        `${ADDRESS}${search}/movie${id}${data}?api_key=${KEY}${query}${name}`
-      );
-      parsedData = await fetchDAta.json();
-      return parsedData;
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      if (Array.isArray(parsedData.results)) {
-        setSearchList(parsedData.results);
+  const fetchMovieData = useCallback(
+    async ({ id = '', data = '', query = '', name = '', search = '' }) => {
+      let parsedData = null;
+      try {
+        parsedData = await (
+          await searchedMovies(ADDRESS, KEY, id, data, query, name, search)
+        ).json();
+        return parsedData;
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        if (Array.isArray(parsedData.results)) {
+          setSearchList(parsedData.results);
+          return;
+        }
+        if (Array.isArray(parsedData.cast)) {
+          setSearchList(parsedData.cast);
+          return;
+        }
+        setSearchValue(prev => ({
+          ...prev,
+          ...parsedData,
+        }));
         return;
       }
-      if (Array.isArray(parsedData.cast)) {
-        setSearchList(parsedData.cast);
-        return;
-      }
-      setSearchValue(prev => ({
-        ...prev,
-        ...parsedData,
-      }));
-      return;
-    }
-  };
+    },
+    [ADDRESS, KEY, searchedMovies]
+  );
 
-  const getMovieById = useCallback(val => {
-    const id = `/${val}`;
-    return fetchMovieData({ id });
-  }, []);
+  const getMovieById = useCallback(
+    val => {
+      const id = `/${val}`;
+      return fetchMovieData({ id });
+    },
+    [fetchMovieData]
+  );
 
-  const getMovieCast = useCallback(val => {
-    const { credits } = URL;
-    const id = `/${val}`;
-    return fetchMovieData({ id, data: credits });
-  }, []);
+  const getMovieCast = useCallback(
+    val => {
+      const id = `/${val}`;
+      return fetchMovieData({ id, data: credits });
+    },
+    [credits, fetchMovieData]
+  );
 
-  const getMovieReviews = useCallback(val => {
-    const { reviews } = URL;
-    const id = `/${val}`;
-    return fetchMovieData({ id, data: reviews });
-  }, []);
+  const getMovieReviews = useCallback(
+    val => {
+      const id = `/${val}`;
+      return fetchMovieData({ id, data: reviews });
+    },
+    [fetchMovieData, reviews]
+  );
 
-  const getMovieByName = useCallback(name => {
-    const { query, search } = URL;
-    return fetchMovieData({
-      query: query,
-      name,
-      search: search,
-    });
-  }, []);
+  const getMovieByName = useCallback(
+    name => {
+      return fetchMovieData({
+        query: query,
+        name,
+        search: search,
+      });
+    },
+    [fetchMovieData, query, search]
+  );
 
   return (
     <MovieContext.Provider

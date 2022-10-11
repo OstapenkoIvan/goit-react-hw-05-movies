@@ -1,7 +1,7 @@
 import { useEffect, Suspense } from 'react';
 import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
-import BackLink from '../../components/BackLink/BackLink';
-import Container from '../../components/Container/Container';
+import BackLink from '../../components/UI/BackLink/BackLink';
+import Container from '../../components/UI/Container/Container';
 import { useMovie } from '../../context/useContext';
 import s from './MovieDetails.module.css';
 
@@ -16,7 +16,12 @@ function MovieDetails({ state }) {
   }, [getMovieById, movieId]);
 
   if (!Object.keys(searchValue).length) {
-    return;
+    return (
+      <Container>
+        <h2>Ooops, something went wrong, lets get back and try again!</h2>
+        <BackLink to={backLinkHref}>Go Back</BackLink>
+      </Container>
+    );
   }
 
   const {

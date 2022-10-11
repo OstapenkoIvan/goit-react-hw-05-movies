@@ -11,7 +11,6 @@ function SearchForm({ onChange, onSubmit, value }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // onSubmit(e.target.elements.query.value);
     getMovieByName(e.target.elements.query.value);
   };
 
@@ -25,7 +24,6 @@ function SearchForm({ onChange, onSubmit, value }) {
 
 SearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
-  // onSubmit: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 

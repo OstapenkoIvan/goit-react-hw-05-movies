@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
-import SharedLayout from './ShardLayout/SharedLayout';
+import SharedLayout from './Layout/Layout';
 import Home from '../pages/Home/Home';
 
 const MovieSearch = lazy(() =>

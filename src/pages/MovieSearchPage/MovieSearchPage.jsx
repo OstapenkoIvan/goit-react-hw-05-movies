@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import MovieList from '../../components/MovieList/MovieList';
-import Container from '../../components/Container/Container';
+import Container from '../../components/UI/Container/Container';
 import { useMovie } from '../../context/useContext';
 
 function Movies(props) {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Container from '../../components/Container/Container';
+import Container from '../../components/UI/Container/Container';
 import { useMovie } from '../../context/useContext';
 import s from './Home.module.css';
 
@@ -11,8 +11,17 @@ function Home() {
     getTrendingMovies();
   }, [getTrendingMovies]);
 
+  const onReload = () => {
+    window.location.reload();
+  };
+
   if (!trend.length) {
-    return;
+    return (
+      <Container>
+        <h2>Something went wrong, try to refresh the page!</h2>
+        <button onClick={onReload}>Refresh Page</button>
+      </Container>
+    );
   }
 
   return (

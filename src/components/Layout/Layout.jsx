@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useMovie } from '../../context/useContext';
-import s from './SharedLayout.module.css';
+import s from './Layout.module.css';
 
 function SharedLayout() {
   const { setSearchList } = useMovie();
